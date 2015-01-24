@@ -1,0 +1,6 @@
+{
+  "name": "ss15-macaco-maluco",
+  "root": "public",
+  "clean_urls": false,
+  "error_page": "error.html"
+}

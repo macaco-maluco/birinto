@@ -7,7 +7,7 @@ module.exports = {
   entry: './lib/index.js',
 
   output: {
-    path: path.join(__dirname),
+    path: path.join(__dirname) + '/public',
     filename: 'macaco-maluco.js',
     libraryTarget: 'umd',
     library: 'MacacoMaluco'
