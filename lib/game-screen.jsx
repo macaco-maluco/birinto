@@ -55,7 +55,7 @@ module.exports = React.createClass({
 
     e.preventDefault();
 
-    var touch = e.targetTouches[0] || {};
+    var touch = e.targetTouches && e.targetTouches[0] || e;
 
     var x = Math.floor(touch.clientX / (window.innerWidth / gameLogic.state.width));
     var y = Math.floor((touch.clientY - 50) / ((window.innerHeight - 50) / gameLogic.state.height));
@@ -71,7 +71,7 @@ module.exports = React.createClass({
         <Link className="back-button" to="/">Back</Link>
         <p className="points">{this.state.points} points</p>
       </header>
-      <div className="game-screen" onTouchStart={this.handleTouch} onTouchMove={this.handleTouch}>
+      <div className="game-screen" onTouchStart={this.handleTouch} onTouchMove={this.handleTouch} onMouseMove={this.handleTouch}>
         <ProgressBar value={ (this.state.now - this.state.startedAt) / this.state.timeout }></ProgressBar>
         <table>
           {
