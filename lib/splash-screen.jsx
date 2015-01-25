@@ -16,6 +16,7 @@ module.exports = React.createClass({
 
   render: function () {
     return <div className="splash-screen">
+      <h1 className="logo">Birinto</h1>
       <p>
         Works offline! Add it to your home screen.
       </p>
