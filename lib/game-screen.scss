@@ -37,6 +37,26 @@
 
 }
 
+.game-screen-wrapper {
+  .points {
+    position: absolute;
+    right: 10px;
+    top: 0;
+  }
+
+  .back-button {
+    margin-top: 3px;
+    margin-left: 4px;
+    background: url('./back-icon.svg') no-repeat;
+    fill: white !important;
+    display: block;
+    width: 44px;
+    height: 42px;
+    font-size: 0;
+    text-indent: -100;
+  }
+}
+
 html, body {
   height: 100%;
   overflow: hidden;

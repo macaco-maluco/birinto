@@ -13,16 +13,4 @@ h1 {
 .application {
   height: 100%;
   background: white;
-
-  .back-button {
-    margin-top: 3px;
-    margin-left: 4px;
-    background: url('./back-icon.svg') no-repeat;
-    fill: white !important;
-    display: block;
-    width: 44px;
-    height: 42px;
-    font-size: 0;
-    text-indent: -100;
-  }
 }

@@ -9,18 +9,21 @@
   color: #ecf0f1;
   text-align: center;
 
-  p {
-    position: absolute;
-    bottom: 0;
-    right: 1em;
-    left: 1em;
+  .points {
+    font-family: monospace;
+    font-size: 5em;
+    margin-top: 0.2em;
   }
 
   h1 {
     font-size: 4em;
+    margin-bottom: 0;
   }
 
-  .start-game {
+  .try-again {
+    position: absolute;
+    bottom: 1em;
+
     $width: 220px;
     $height: 70px;
 
@@ -31,9 +34,6 @@
     line-height: $height;
 
     box-sizing: border-box;
-    position: absolute;
-    top: 50%;
-    left: 50%;
     font-size: 1.8em;
     background: #2c3e50;
     display: inline-block;

@@ -12,9 +12,6 @@ module.exports = React.createClass({
   render: function () {
     return (
       <div className="application">
-        <header>
-          <Link className="back-button" to="/">Back</Link>
-        </header>
         <RouteHandler/>
       </div>
     );

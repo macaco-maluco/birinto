@@ -1,5 +1,6 @@
 var React = require("react");
 var router = require('react-router');
+var Link = router.Link;
 
 
 require("./game-screen.scss");
@@ -25,7 +26,7 @@ module.exports = React.createClass({
     };
 
     gameLogic.onGameOver = function () {
-      that.transitionTo('lose');
+      that.transitionTo('lose', {}, { points: that.state.points });
     };
 
     that._gameLogic = gameLogic;
@@ -65,30 +66,36 @@ module.exports = React.createClass({
   render: function() {
     var nodeWidth = (100 / this.state.width) + '%';
     var map = this.state.map;
-    return <div className="game-screen" onTouchStart={this.handleTouch} onTouchMove={this.handleTouch}>
-      <ProgressBar value={ (this.state.now - this.state.startedAt) / this.state.timeout }></ProgressBar>
-      <table>
-        {
-          map.map(function (row, x) {
-            return <tr key={'row-' + x}>
-              {
-                row.map(function (node, y) {
-                  return <td key={'node-' + x + '-' + y}
-                             style={{
-                               'border-top-style': node.walls[0] ? 'solid' : 'inherit',
-                               'border-right-style': node.walls[1] ? 'solid' : 'inherit',
-                               'border-bottom-style': node.walls[2] ? 'solid' : 'inherit',
-                               'border-left-style': node.walls[3] ? 'solid' : 'inherit',
-                               'width': nodeWidth }}
-                             className={'node-type-' + node.type}
-                             data-position-x={x}
-                             data-position-y={y} ></td>;
-                })
-              }
-            </tr>;
-          })
-        }
-      </table>
+    return <div className="game-screen-wrapper">
+      <header>
+        <Link className="back-button" to="/">Back</Link>
+        <p className="points">{this.state.points} points</p>
+      </header>
+      <div className="game-screen" onTouchStart={this.handleTouch} onTouchMove={this.handleTouch}>
+        <ProgressBar value={ (this.state.now - this.state.startedAt) / this.state.timeout }></ProgressBar>
+        <table>
+          {
+            map.map(function (row, x) {
+              return <tr key={'row-' + x}>
+                {
+                  row.map(function (node, y) {
+                    return <td key={'node-' + x + '-' + y}
+                               style={{
+                                 'border-top-style': node.walls[0] ? 'solid' : 'inherit',
+                                 'border-right-style': node.walls[1] ? 'solid' : 'inherit',
+                                 'border-bottom-style': node.walls[2] ? 'solid' : 'inherit',
+                                 'border-left-style': node.walls[3] ? 'solid' : 'inherit',
+                                 'width': nodeWidth }}
+                               className={'node-type-' + node.type}
+                               data-position-x={x}
+                               data-position-y={y} ></td>;
+                  })
+                }
+              </tr>;
+            })
+          }
+        </table>
+      </div>
     </div>;
   }
 });
