@@ -1,7 +1,7 @@
 var React = require("react");
 
 
-require("./macaco-maluco.scss");
+require("./game-screen.scss");
 var Sounds = require('./sounds');
 var GameLogic = require('./game-logic');
 var ProgressBar = require('./progress-bar.jsx');
@@ -59,7 +59,7 @@ module.exports = React.createClass({
 
   render: function() {
     var map = this.state.map;
-    return <div className="macaco-maluco">
+    return <div className="game-screen">
       <ProgressBar value={ (this.state.now - this.state.startedAt) / this.state.timeout }></ProgressBar>
       <table>
         {
