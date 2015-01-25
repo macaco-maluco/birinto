@@ -12,12 +12,12 @@
   }
 
   td {
-    background: blue;
-    border: none;
-  }
-
-  td.selected {
-    background: pink;
+    // add content to force Mobile Safari to show the borders
+    &:before { content: 'a'; font-size: 0; }
+    border-width: 2px;
+    border-style: inherit;
+    border-color: #2c3e50;
+    border-right-color: #2c3e50;
   }
 
   .node-type-0 {
