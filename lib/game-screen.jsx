@@ -25,7 +25,7 @@ module.exports = React.createClass({
     };
 
     gameLogic.onGameOver = function () {
-      that.transitionTo('main');
+      that.transitionTo('lose');
     };
 
     that._gameLogic = gameLogic;

@@ -1,0 +1,44 @@
+.lose-screen {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+
+  background: #c0392b;
+  color: #ecf0f1;
+  text-align: center;
+
+  p {
+    position: absolute;
+    bottom: 0;
+    right: 1em;
+    left: 1em;
+  }
+
+  h1 {
+    font-size: 4em;
+  }
+
+  .start-game {
+    $width: 220px;
+    $height: 70px;
+
+    margin-left: -$width/2;
+    margin-top: -$height/2;
+    width: $width;
+    height: $height;
+    line-height: $height;
+
+    box-sizing: border-box;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    font-size: 1.8em;
+    background: #2c3e50;
+    display: inline-block;
+    border-radius: 10px;
+    text-decoration: none;
+    color: white;
+  }
+}
