@@ -3,11 +3,13 @@ var React = require("react");
 
 require("./macaco-maluco.scss");
 var Sounds = require('./sounds');
+var GameMap = require('./game-map');
 
 
 module.exports = React.createClass({
   componentWillMount: function () {
     this._sounds = new Sounds();
+    this._map = new GameMap();
   },
 
   render: function() {
@@ -18,7 +20,7 @@ module.exports = React.createClass({
       var touch = e.targetTouches[0] || {};
       sounds.hover();
       var el = document.elementFromPoint(touch.clientX, touch.clientY);
-      el.className = 'selected';
+      el.className = 'node-type-2';
       e.preventDefault();
     };
 
@@ -27,105 +29,17 @@ module.exports = React.createClass({
 
     return <div className="macaco-maluco">
       <table>
-        <tr>
-          <td>1</td>
-          <td>1</td>
-          <td>1</td>
-          <td>1</td>
-          <td>1</td>
-          <td>1</td>
-          <td>1</td>
-          <td>1</td>
-          <td>1</td>
-        </tr>
-        <tr>
-          <td>2</td>
-          <td>2</td>
-          <td>2</td>
-          <td>2</td>
-          <td>2</td>
-          <td>2</td>
-          <td>2</td>
-          <td>2</td>
-          <td>2</td>
-        </tr>
-        <tr>
-          <td>3</td>
-          <td>3</td>
-          <td>3</td>
-          <td>3</td>
-          <td>3</td>
-          <td>3</td>
-          <td>3</td>
-          <td>3</td>
-          <td>3</td>
-        </tr>
-        <tr>
-          <td>4</td>
-          <td>4</td>
-          <td>4</td>
-          <td>4</td>
-          <td>4</td>
-          <td>4</td>
-          <td>4</td>
-          <td>4</td>
-          <td>4</td>
-        </tr>
-        <tr>
-          <td>5</td>
-          <td>5</td>
-          <td>5</td>
-          <td>5</td>
-          <td>5</td>
-          <td>5</td>
-          <td>5</td>
-          <td>5</td>
-          <td>5</td>
-        </tr>
-        <tr>
-          <td>6</td>
-          <td>6</td>
-          <td>6</td>
-          <td>6</td>
-          <td>6</td>
-          <td>6</td>
-          <td>6</td>
-          <td>6</td>
-          <td>6</td>
-        </tr>
-        <tr>
-          <td>7</td>
-          <td>7</td>
-          <td>7</td>
-          <td>7</td>
-          <td>7</td>
-          <td>7</td>
-          <td>7</td>
-          <td>7</td>
-          <td>7</td>
-        </tr>
-        <tr>
-          <td>8</td>
-          <td>8</td>
-          <td>8</td>
-          <td>8</td>
-          <td>8</td>
-          <td>8</td>
-          <td>8</td>
-          <td>8</td>
-          <td>8</td>
-        </tr>
-        <tr>
-          <td>9</td>
-          <td>9</td>
-          <td>9</td>
-          <td>9</td>
-          <td>9</td>
-          <td>9</td>
-          <td>9</td>
-          <td>9</td>
-          <td>9</td>
-        </tr>
+        {
+          this._map._map.map(function (row) {
+            return <tr>
+              {
+                row.map(function (node) {
+                  return <td className={'node-type-' + node}></td>;
+                })
+              }
+            </tr>;
+          })
+        }
       </table>
     </div>;
   }

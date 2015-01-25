@@ -7,16 +7,35 @@
 
   table {
     width: 100%;
-    height: 100%
+    height: 100%;
+    border-spacing: 0;
   }
 
   td {
     background: blue;
+    border: none;
   }
 
   td.selected {
     background: pink;
   }
+
+  .node-type-0 {
+    background: #bdc3c7;
+  }
+
+  .node-type-1 {
+    background: #2c3e50;
+  }
+
+  .node-type-2 {
+    background: #1abc9c;
+  }
+
+  .node-type-3 {
+    background: #f1c40f;
+  }
+
 }
 
 html, body {
