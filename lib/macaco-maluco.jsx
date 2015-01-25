@@ -13,6 +13,10 @@ module.exports = React.createClass({
     this._map.onChange(function () {
       this.forceUpdate();
     }.bind(this));
+
+    this._map.onGoal(function () {
+      alert('win!');
+    });
   },
 
   componentDidMount: function () {
