@@ -120,6 +120,7 @@ module.exports = React.createClass({
         </tr>
       </table>
 
+      <audio src="/sounds/soundtrack.mp3" preload="auto" controls autoplay loop></audio>
     </div>;
   }
 });
