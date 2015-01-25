@@ -17,7 +17,7 @@ module.exports = React.createClass({
   render: function () {
     return <div className="splash-screen">
       <p>
-        The ultimate racing puzzle action game.
+        Works offline! Add it to your home screen.
       </p>
       <Link to="game" className="start-game">Start game</Link>
     </div>;

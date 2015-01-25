@@ -6,7 +6,7 @@
     "test": "./node_modules/.bin/jsxhint lib/ spec/ && ./node_modules/.bin/jshint lib/ spec/ && ./node_modules/karma/bin/karma start karma.conf.js",
     "watch-test": "./node_modules/karma/bin/karma start karma.conf.js --auto-watch --no-single-run",
     "build-lib": "./node_modules/.bin/webpack -p",
-    "build": "npm run build-lib && cp index.html dist/index.html && cp icon-1024.png dist/icon-1024.png",
+    "build": "npm run build-lib && cp index.html dist/index.html && cp icon-1024.png dist/icon-1024.png && cp favicon.png dist/favicon.png",
     "rename-css-bower-dependencies": "find bower_components -name '*.css' | sed -e 'p;s/.css$/.scss/' | xargs -n2 mv",
     "dev": "./node_modules/.bin/webpack-dev-server --inline --hot",
     "postinstall": "bower install"
@@ -32,6 +32,7 @@
     "webpack-dev-server": "^1.6.6"
   },
   "dependencies": {
+    "appcache-webpack-plugin": "^0.1.1",
     "howler": "^1.1.25",
     "normalize.scss": "^0.1.0",
     "react": "^0.12.2",

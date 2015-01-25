@@ -2,19 +2,24 @@
 var path = require('path');
 
 
+var AppCachePlugin = require('appcache-webpack-plugin');
+
+
 module.exports = {
   context: path.join(__dirname),
   entry: './lib/index.js',
+
+  plugins: [
+    new AppCachePlugin({
+      cache: ['icon-1024.png', 'favicon.png']
+    })
+  ],
 
   output: {
     path: path.join(__dirname) + '/dist',
     filename: 'macaco-maluco.js',
     libraryTarget: 'umd',
     library: 'MacacoMaluco'
-  },
-
-  externals: {
-   'react': 'var React'
   },
 
   module: {
