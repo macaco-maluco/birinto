@@ -14,16 +14,16 @@ module.exports = React.createClass({
     var sounds = this._sounds;
     sounds.hover();
 
-    window.addEventListener('touchstart', function (e) {
-      e.preventDefault();
-    });
-
-    window.addEventListener('touchmove', function (e) {
+    var move = function (e) {
       var touch = e.targetTouches[0] || {};
       sounds.hover();
       var el = document.elementFromPoint(touch.clientX, touch.clientY);
       el.className = 'selected';
-    });
+      e.preventDefault();
+    };
+
+    window.addEventListener('touchstart', move);
+    window.addEventListener('touchmove', move);
 
     return <div className="macaco-maluco">
       <table>
