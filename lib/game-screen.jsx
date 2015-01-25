@@ -63,6 +63,7 @@ module.exports = React.createClass({
   },
 
   render: function() {
+    var nodeWidth = (100 / this.state.width) + '%';
     var map = this.state.map;
     return <div className="game-screen" onTouchStart={this.handleTouch} onTouchMove={this.handleTouch}>
       <ProgressBar value={ (this.state.now - this.state.startedAt) / this.state.timeout }></ProgressBar>
@@ -77,7 +78,8 @@ module.exports = React.createClass({
                                'border-top-style': node.walls[0] ? 'solid' : 'inherit',
                                'border-right-style': node.walls[1] ? 'solid' : 'inherit',
                                'border-bottom-style': node.walls[2] ? 'solid' : 'inherit',
-                               'border-left-style': node.walls[3] ? 'solid' : 'inherit' }}
+                               'border-left-style': node.walls[3] ? 'solid' : 'inherit',
+                               'width': nodeWidth }}
                              className={'node-type-' + node.type}
                              data-position-x={x}
                              data-position-y={y} ></td>;
