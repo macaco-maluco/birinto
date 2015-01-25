@@ -10,31 +10,43 @@ module.exports = React.createClass({
   componentWillMount: function () {
     this._sounds = new Sounds();
     this._map = new GameMap();
+    this._map.onChange(function () {
+      this.forceUpdate();
+    }.bind(this));
   },
 
-  render: function() {
+  componentDidMount: function () {
     var sounds = this._sounds;
-    sounds.hover();
+    var map = this._map;
 
     var move = function (e) {
-      var touch = e.targetTouches[0] || {};
-      sounds.hover();
-      var el = document.elementFromPoint(touch.clientX, touch.clientY);
-      el.className = 'node-type-2';
       e.preventDefault();
+
+      var touch = e.targetTouches[0] || {};
+
+      var x = Math.floor(touch.clientX / (window.innerWidth / 9));
+      var y = Math.floor(touch.clientY / (window.innerHeight / 12));
+
+      if (!map.moveTo(x, y)) { return; }
+
+      sounds.hover();
     };
 
     window.addEventListener('touchstart', move);
     window.addEventListener('touchmove', move);
+  },
+
+  render: function() {
+    var map = this._map;
 
     return <div className="macaco-maluco">
       <table>
         {
-          this._map._map.map(function (row) {
-            return <tr>
+          map._map.map(function (row, x) {
+            return <tr key={'row-' + x}>
               {
-                row.map(function (node) {
-                  return <td className={'node-type-' + node}></td>;
+                row.map(function (node, y) {
+                  return <td key={'node-' + x + '-' + y} className={'node-type-' + node} data-position-x={x} data-position-y={y} ></td>;
                 })
               }
             </tr>;
