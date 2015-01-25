@@ -2,17 +2,25 @@ var React = require("react");
 
 
 require("./macaco-maluco.scss");
+var Sounds = require('./sounds');
 
 
 module.exports = React.createClass({
+  componentWillMount: function () {
+    this._sounds = new Sounds();
+  },
 
   render: function() {
+    var sounds = this._sounds;
+    sounds.hover();
+
     window.addEventListener('touchstart', function (e) {
       e.preventDefault();
     });
 
     window.addEventListener('touchmove', function (e) {
       var touch = e.targetTouches[0] || {};
+      sounds.hover();
       var el = document.elementFromPoint(touch.clientX, touch.clientY);
       el.className = 'selected';
     });
@@ -119,8 +127,6 @@ module.exports = React.createClass({
           <td>9</td>
         </tr>
       </table>
-
-      <audio src="/sounds/soundtrack.mp3" preload="auto" controls autoplay loop></audio>
     </div>;
   }
 });

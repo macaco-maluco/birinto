@@ -29,6 +29,10 @@ module.exports = {
       {
         test: /\.jsx$/,
         loader: 'jsx-loader?harmony'
+      },
+      {
+        test: /\.mp3$/,
+        loader: "file?name=[hash].[ext]"
       }
     ]
   }

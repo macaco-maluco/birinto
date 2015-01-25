@@ -27,9 +27,11 @@
     "sass-loader": "^0.3.1",
     "style-loader": "^0.8.2",
     "webpack": "^1.4.14",
+    "url-loader": "^0.5.5",
     "webpack-dev-server": "^1.6.6"
   },
   "dependencies": {
-    "react": "^0.12.2"
+    "howler": "^1.1.25",
+    "react": "^0.12.2",
   }
 }
