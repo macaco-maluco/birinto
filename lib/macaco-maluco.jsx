@@ -24,8 +24,8 @@ module.exports = React.createClass({
 
       var touch = e.targetTouches[0] || {};
 
-      var x = Math.floor(touch.clientX / (window.innerWidth / 9));
-      var y = Math.floor(touch.clientY / (window.innerHeight / 12));
+      var x = Math.floor(touch.clientX / (window.innerWidth / map.width));
+      var y = Math.floor(touch.clientY / (window.innerHeight / map.height));
 
       if (!map.moveTo(x, y)) { return; }
 
@@ -42,7 +42,7 @@ module.exports = React.createClass({
     return <div className="macaco-maluco">
       <table>
         {
-          map._map.map(function (row, x) {
+          map.nodes.map(function (row, x) {
             return <tr key={'row-' + x}>
               {
                 row.map(function (node, y) {
