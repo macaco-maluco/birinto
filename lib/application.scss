@@ -1,0 +1,28 @@
+@import 'normalize.scss/normalize';
+
+body {
+  font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
+  font-weight: lighter;
+  letter-spacing: 0.1em;
+}
+
+h1 {
+  font-weight: lighter;
+}
+
+.application {
+  height: 100%;
+  background: white;
+
+  .back-button {
+    margin-top: 3px;
+    margin-left: 4px;
+    background: url('./back-icon.svg') no-repeat;
+    fill: white !important;
+    display: block;
+    width: 44px;
+    height: 42px;
+    font-size: 0;
+    text-indent: -100;
+  }
+}

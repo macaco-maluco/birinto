@@ -1,19 +1,20 @@
 var React = require("react");
+var router = require('react-router');
 
 
 require("./game-screen.scss");
-var Sounds = require('./sounds');
+var sounds = require('./sounds');
 var GameLogic = require('./game-logic');
 var ProgressBar = require('./progress-bar.jsx');
 
 
 module.exports = React.createClass({
+  mixins: [ router.Navigation ],
+
   componentWillMount: function () {
     var that = this;
 
-    this._sounds = new Sounds();
-
-    var gameLogic = new GameLogic(Math.floor(window.innerWidth / 50) , Math.floor(window.innerHeight / 50));
+    var gameLogic = new GameLogic(Math.floor(window.innerWidth / 50) , Math.floor((window.innerHeight-50) / 50));
 
     gameLogic.onChange = function (state) {
       that.setState(state);
@@ -24,42 +25,46 @@ module.exports = React.createClass({
     };
 
     gameLogic.onGameOver = function () {
-      gameLogic.restart();
+      // that.transitionTo('main');
     };
 
     that._gameLogic = gameLogic;
     that.setState(gameLogic.state);
   },
 
+  componentWillUnmount: function () {
+    this.running = false;
+  },
+
   componentDidMount: function () {
-    var sounds = this._sounds;
+    var that = this;
     var gameLogic = this._gameLogic;
-
-    var move = function (e) {
-      e.preventDefault();
-
-      var touch = e.targetTouches[0] || {};
-
-      var x = Math.floor(touch.clientX / (window.innerWidth / gameLogic.state.width));
-      var y = Math.floor(touch.clientY / (window.innerHeight / gameLogic.state.height));
-
-      if (gameLogic.moveTo(x, y)) { sounds.hover(); }
-    };
+    this.running = true;
 
     var render = function () {
       gameLogic.update();
-      window.requestAnimationFrame(render);
+      if (that.running) { window.requestAnimationFrame(render); }
     };
-
-    window.addEventListener('touchstart', move);
-    window.addEventListener('touchmove', move);
 
     render();
   },
 
+  handleTouch: function (e) {
+    var gameLogic = this._gameLogic;
+
+    e.preventDefault();
+
+    var touch = e.targetTouches[0] || {};
+
+    var x = Math.floor(touch.clientX / (window.innerWidth / gameLogic.state.width));
+    var y = Math.floor((touch.clientY - 50) / ((window.innerHeight - 50) / gameLogic.state.height));
+
+    if (gameLogic.moveTo(x, y)) { sounds.playHover(); }
+  },
+
   render: function() {
     var map = this.state.map;
-    return <div className="game-screen">
+    return <div className="game-screen" onTouchStart={this.handleTouch} onTouchMove={this.handleTouch}>
       <ProgressBar value={ (this.state.now - this.state.startedAt) / this.state.timeout }></ProgressBar>
       <table>
         {

@@ -33,6 +33,10 @@ module.exports = {
       {
         test: /\.mp3$/,
         loader: "file?name=[hash].[ext]"
+      },
+      {
+        test: /\.(png|jpg|jpeg|gif|svg)$/,
+        loader: "file-loader"
       }
     ]
   }
