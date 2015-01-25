@@ -1,0 +1,9 @@
+.progress-bar {
+  height: 5px;
+  background: #97C4E2;
+
+  .current-progress {
+    background: #DD4333;
+    height: 100%;
+  }
+}

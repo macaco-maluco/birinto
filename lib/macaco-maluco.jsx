@@ -3,51 +3,67 @@ var React = require("react");
 
 require("./macaco-maluco.scss");
 var Sounds = require('./sounds');
-var GameMap = require('./game-map');
+var GameLogic = require('./game-logic');
+var ProgressBar = require('./progress-bar.jsx');
 
 
 module.exports = React.createClass({
   componentWillMount: function () {
-    this._sounds = new Sounds();
-    this._map = new GameMap(5, 9);
-    this._map.onChange(function () {
-      this.forceUpdate();
-    }.bind(this));
+    var that = this;
 
-    this._map.onGoal(function () {
-      this._map.build();
-      this.forceUpdate();
-    }.bind(this));
+    this._sounds = new Sounds();
+
+    var gameLogic = new GameLogic(5, 9);
+
+    gameLogic.onChange = function (state) {
+      that.setState(state);
+    };
+
+    gameLogic.onGoal = function () {
+      gameLogic.restart();
+    };
+
+    gameLogic.onGameOver = function () {
+      gameLogic.restart();
+    };
+
+    that._gameLogic = gameLogic;
+    that.setState(gameLogic.state);
   },
 
   componentDidMount: function () {
     var sounds = this._sounds;
-    var map = this._map;
+    var gameLogic = this._gameLogic;
 
     var move = function (e) {
       e.preventDefault();
 
       var touch = e.targetTouches[0] || {};
 
-      var x = Math.floor(touch.clientX / (window.innerWidth / map.width));
-      var y = Math.floor(touch.clientY / (window.innerHeight / map.height));
+      var x = Math.floor(touch.clientX / (window.innerWidth / gameLogic.state.width));
+      var y = Math.floor(touch.clientY / (window.innerHeight / gameLogic.state.height));
 
-      if (!map.moveTo(x, y)) { return; }
+      if (gameLogic.moveTo(x, y)) { sounds.hover(); }
+    };
 
-      sounds.hover();
+    var render = function () {
+      gameLogic.update();
+      window.requestAnimationFrame(render);
     };
 
     window.addEventListener('touchstart', move);
     window.addEventListener('touchmove', move);
+
+    render();
   },
 
   render: function() {
-    var map = this._map;
-
+    var map = this.state.map;
     return <div className="macaco-maluco">
+      <ProgressBar value={ (this.state.now - this.state.startedAt) / this.state.timeout }></ProgressBar>
       <table>
         {
-          map.nodes.map(function (row, x) {
+          map.map(function (row, x) {
             return <tr key={'row-' + x}>
               {
                 row.map(function (node, y) {
