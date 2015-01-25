@@ -13,7 +13,7 @@ module.exports = React.createClass({
 
     this._sounds = new Sounds();
 
-    var gameLogic = new GameLogic(5, 9);
+    var gameLogic = new GameLogic(Math.floor(window.innerWidth / 50) , Math.floor(window.innerHeight / 50));
 
     gameLogic.onChange = function (state) {
       that.setState(state);
