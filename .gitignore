@@ -3,4 +3,4 @@ bower_components
 .DS_Store
 *.log
 .divshot-cache
-public
+dist

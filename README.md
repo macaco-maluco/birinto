@@ -25,3 +25,14 @@ require(['react', 'MacacoMaluco'], function(React, MacacoMaluco) {
 * Continuously run tests on file changes `npm run watch-test`;
 * Run tests: `npm test`;
 * Build `npm run build`;
+
+
+## Deployment
+
+1. `devshot login` login at devshot
+2. `divshot push` (for Development) or `divshot push staging/production`
+
+## URLs
+
+* production http://ss15-macaco-maluco.divshot.io
+* development http://development.ss15-macaco-maluco.divshot.io
