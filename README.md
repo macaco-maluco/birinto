@@ -1,23 +1,12 @@
-# macaco maluco
+# Birinto
 
-Get the AMD module located at `macaco-maluco.js` and include it in your project.
+Birinto is the ultimate maze solving challenge. Get unlimited procedurally generated mazes to solve until the end of the world!
 
-Here is a sample integration:
+[Gameplay video](https://www.youtube.com/watch?v=5Z04I65kDSI).
 
-```js
-require.config({
-  paths: {
-    'react': 'vendor/bower_components/react/react',
-    'MacacoMaluco': 'macaco-maluco'
-  }
-});
+Test your skills of problem solving and make it to the end before the time runs out.
 
-require(['react', 'MacacoMaluco'], function(React, MacacoMaluco) {
-
-  React.render(React.createElement(MacacoMaluco), document.getElementById('widget-container'));
-
-});
-```
+Add it to your mobile device's home screen and play it anywhere, even during the world's apocalypse (no internet connection)!
 
 ## Development
 
