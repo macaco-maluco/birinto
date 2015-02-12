@@ -34,3 +34,8 @@ Was developed as an entry for the [Static Showdown 2015](http://2015.staticshowd
 
 * production http://ss15-macaco-maluco.divshot.io
 * development http://development.ss15-macaco-maluco.divshot.io
+
+## Authors
+
+* [Max Claus Nunes](https://github.com/maxcnunes);
+* [Paulo Ragonha](https://github.com/pirelenito).
