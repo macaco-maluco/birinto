@@ -1,0 +1,19 @@
+sudo: required
+
+language: node_js
+
+node_js:
+  - "0.10.44"
+
+services:
+  - docker
+
+before_install:
+  - docker login -e="$DOCKER_EMAIL" -u="$DOCKER_USERNAME" -p="$DOCKER_PASSWORD"
+
+script:
+  - npm run build
+  - docker build -t macacomaluco/birinto:latest .
+
+after_success:
+  - test $TRAVIS_BRANCH == "master" && docker push macacomaluco/birinto:latest
