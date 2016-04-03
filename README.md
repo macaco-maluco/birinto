@@ -25,16 +25,6 @@ Was developed as an entry for the [Static Showdown 2015](http://2015.staticshowd
 * Run tests: `npm test`;
 * Build `npm run build`;
 
-## Deployment
-
-1. `devshot login` login at devshot
-2. `divshot push` (for Development) or `divshot push staging/production`
-
-## URLs
-
-* production http://ss15-macaco-maluco.divshot.io
-* development http://development.ss15-macaco-maluco.divshot.io
-
 ## Authors
 
 * [Max Claus Nunes](https://github.com/maxcnunes);
